@@ -1,1 +1,1 @@
-export const SEARCH_HISTORY = 'search_history';
+export const SEARCH_HISTORY_KEY = 'search_history';

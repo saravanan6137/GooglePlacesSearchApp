@@ -11,6 +11,7 @@ prepare_react_native_project!
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
   use_frameworks! :linkage => linkage.to_sym
 end
 
