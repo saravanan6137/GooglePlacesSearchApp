@@ -31,5 +31,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 15,
     borderRadius: 16,
+    overflow: 'hidden',
   },
 });

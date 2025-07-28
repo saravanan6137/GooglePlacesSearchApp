@@ -40,14 +40,14 @@ export const SearchHistory = React.memo(({ history, onSelect, clearHistory }: Pr
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 24,
+    marginTop: 10,
     width: '100%',
   },
   clearButton: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#f5d1d1ff',
     paddingHorizontal: 16,
     paddingVertical: 10,
-    borderRadius: 5,
+    borderRadius: 8,
     alignItems: 'center',
     marginBottom: 10,
     justifyContent: 'center',
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   item: {
-    backgroundColor: '#fff',
+    backgroundColor: '#cfc4c4ff',
     borderRadius: 10,
     padding: 12,
     marginBottom: 10,

@@ -5,7 +5,7 @@ import { Placeholder } from '@components/Placeholder';
 import { SearchHistory } from '@components/SearchHistory';
 import { useState, useEffect, useCallback } from 'react';
 import { getHistory, saveHistory, clearHistory } from '@utils/utilityHistory';
-import { LOCATION_NOT_SELECTED, LOCATION_SUBTEXT, EXPLORE_THE_WORLD, SEARCH_LOCATION, LIVE_MAP_VIEW, RECENT_SEARCHES } from '@constants/strings';
+import { LOCATION_NOT_SELECTED, LOCATION_SUBTEXT, EXPLORE_THE_WORLD, SEARCH_LOCATION, RECENT_SEARCHES } from '@constants/strings';
 import Assets from '@assets/index';
 import { PlaceItem } from '@/types';
 
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         color: '#333',
     },
     mapContainer: {
-        height: 200,
+        height: 300,
         borderRadius: 12,
         overflow: 'hidden',
     },

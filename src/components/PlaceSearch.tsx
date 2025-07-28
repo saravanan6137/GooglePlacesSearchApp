@@ -1,7 +1,5 @@
-import { StyleSheet, Platform } from 'react-native';
 import Config from 'react-native-config';
 import React from 'react';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import GooglePlacesTextInput from 'react-native-google-places-textinput';
 import { PlaceItem } from '@/types';
 
@@ -32,68 +30,6 @@ export const PlaceSearch = React.memo(({
         onError={(error) => {
           console.error('Error fetching places:', error);
         }}
-        // query={{
-        //   key: api_key,
-        //   language: 'en',
-        // }}
-        // predefinedPlaces={[]}
-        // predefinedPlacesAlwaysVisible={false}
-        // textInputProps={{
-        //   placeholderTextColor: '#888',
-        //   returnKeyType: 'search',
-        //   onFocus: () => console.log('Input focused'),
-        // }}
-        // styles={{
-        //   textInputContainer: styles.inputContainer,
-        //   textInput: styles.textInput,
-        //   listView: styles.listView,
-        //   row: styles.row,
-        //   separator: styles.separator,
-        // }}
       />
   );
 });
-
-const styles = StyleSheet.create({
-  inputContainer: {
-    backgroundColor: 'transparent',
-    borderTopWidth: 0,
-    borderBottomWidth: 0,
-  },
-  textInput: {
-    height: 48,
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    backgroundColor: '#ffffff',
-    fontSize: 16,
-    color: '#333',
-    borderColor: '#ddd',
-    borderWidth: 1,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 2,
-      },
-    }),
-  },
-  listView: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    marginTop: 8,
-    elevation: 3,
-  },
-  row: {
-    padding: 14,
-    borderBottomWidth: 0,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#eee',
-  },
-});
-

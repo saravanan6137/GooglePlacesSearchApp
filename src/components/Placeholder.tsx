@@ -1,14 +1,13 @@
 import { Text, View, StyleSheet, Image } from 'react-native';
 import React from 'react';
 
-// PlaceHolder component to display when no location is selected
-
 interface Props {
   placeholderText: string;
   helperText?: string;
   placeholderImage?: any;
 }
 
+// This component is used when no location is selected or data is unavailable
 export const Placeholder = React.memo(({ placeholderText, helperText, placeholderImage }: Props) => {
     return (
         <View style={styles.placeholder}>
