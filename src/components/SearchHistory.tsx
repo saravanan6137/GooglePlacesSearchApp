@@ -1,6 +1,7 @@
 import { FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import { Placeholder } from './Placeholder';
+import { NO_RECENT_SEARCHES } from '@constants/strings';
 import Assets from '@assets/index';
 import { PlaceItem } from '@/types';
 
@@ -14,7 +15,7 @@ interface Props {
 export const SearchHistory = React.memo(({ history, onSelect, clearHistory }: Props) => {
   if (!history.length) {
     return (
-      <Placeholder placeholderImage={Assets.unavailable} placeholderText="No recent searches" />
+      <Placeholder placeholderImage={Assets.unavailable} placeholderText={NO_RECENT_SEARCHES} />
     );
   }
 

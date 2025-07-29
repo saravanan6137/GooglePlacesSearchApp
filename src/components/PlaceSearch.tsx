@@ -1,5 +1,6 @@
 import Config from 'react-native-config';
 import React from 'react';
+import { SEARCH_FOR_PLACES } from '@constants/strings';
 import GooglePlacesTextInput from 'react-native-google-places-textinput';
 import { PlaceItem } from '@/types';
 
@@ -12,14 +13,12 @@ export const PlaceSearch = React.memo(({
   onPlaceSelected: (details: PlaceItem) => void;
 }) => {
   const api_key = Config.GOOGLE_API_KEY;
-  console.log('Google API Key:', api_key);
   return (
       <GooglePlacesTextInput
-        placeHolderText="Search for places"
+        placeHolderText={SEARCH_FOR_PLACES}
         fetchDetails={true}
         apiKey={api_key ?? ''}
         onPlaceSelect={(place) => {
-          console.log('Selected Place:', place);
           const mappedPlace: PlaceItem = {
             name: place?.details?.displayName?.text || '',
             latitude: place?.details?.location?.latitude || 0,

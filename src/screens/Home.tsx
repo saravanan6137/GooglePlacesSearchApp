@@ -18,7 +18,6 @@ export const Home = () => {
     }, []);
 
     const onPlaceSelected = useCallback((place: PlaceItem) => {
-        console.log('Place selected:', place);
         saveHistory(place);
         setLocation({ latitude: place.latitude, longitude: place.longitude });
         setHistory(getHistory());
