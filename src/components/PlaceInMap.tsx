@@ -20,7 +20,7 @@ export const PlaceInMap = React.memo(({ location }: Props) => {
         longitudeDelta: 0.01,
       }}
     >
-      <Marker key={`${location.latitude}-${location.longitude}`} coordinate={{ latitude: location?.latitude, longitude: location?.longitude }}>
+      <Marker key={`${location?.latitude}-${location?.longitude}`} coordinate={{ latitude: location?.latitude, longitude: location?.longitude }}>
         <Callout>
           <View style={styles.calloutContainer}>
             <Text style={styles.calloutText} numberOfLines={3}>{location?.address}</Text>
