@@ -1,4 +1,4 @@
-import { FlatList, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
+import { FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import { Placeholder } from './Placeholder';
 import Assets from '@assets/index';
@@ -19,7 +19,7 @@ export const SearchHistory = React.memo(({ history, onSelect, clearHistory }: Pr
   }
 
   return (
-    <View style={styles.container}>
+    <>
       <TouchableOpacity onPress={() => clearHistory()} style={styles.clearButton}>
         <Text style={styles.header}>Clear History</Text>
       </TouchableOpacity>
@@ -34,35 +34,28 @@ export const SearchHistory = React.memo(({ history, onSelect, clearHistory }: Pr
         )}
         showsVerticalScrollIndicator={false}
       />
-    </View>
+    </>
   );
 });
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 10,
-    width: '100%',
-  },
   clearButton: {
     backgroundColor: '#f5d1d1ff',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 10,
     justifyContent: 'center',
-    height: 40,
+    height: 30,
   },
   header: {
     textAlign: 'center',
-    fontSize: 14,
     color: '#444',
   },
   list: {
     paddingBottom: 16,
   },
   item: {
-    backgroundColor: '#cfc4c4ff',
+    backgroundColor: '#dbdbdbff',
     borderRadius: 10,
     padding: 12,
     marginBottom: 10,

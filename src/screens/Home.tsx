@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, KeyboardAvoidingView, SafeAreaView, Platform } from 'react-native';
 import { PlaceSearch } from '@components/PlaceSearch';
 import { PlaceInMap } from '@components/PlaceInMap';
 import { Placeholder } from '@components/Placeholder';
@@ -31,34 +31,44 @@ export const Home = () => {
     const handleClearHistory = useCallback(() => {
         clearHistory();
         setHistory([]);
+        setLocation(null);
     }, []);
 
     return (
-        <ScrollView style={styles.container} keyboardShouldPersistTaps="handled"
-            nestedScrollEnabled={true}>
-            <Text style={styles.headerTitle}>{EXPLORE_THE_WORLD}</Text>
+        <SafeAreaView style={styles.container}>
+            <KeyboardAvoidingView
+                style={styles.keyboardContainer}
+                behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+                keyboardVerticalOffset={80}
+            >
+                <View style={styles.innerContent}>
+                    <Text style={styles.headerTitle}>{EXPLORE_THE_WORLD}</Text>
 
-            <View style={styles.card}>
-                <Text style={styles.sectionTitle}>{SEARCH_LOCATION}</Text>
-                <PlaceSearch onPlaceSelected={onPlaceSelected} />
-                {location ? (
-                    <View style={styles.mapContainer}>
-                        <PlaceInMap location={location} />
+                    <View style={styles.card}>
+                        <Text style={styles.sectionTitle}>{SEARCH_LOCATION}</Text>
+                        <PlaceSearch onPlaceSelected={onPlaceSelected} />
+                        {location ? (
+                            <View style={styles.mapContainer}>
+                                <PlaceInMap location={location} />
+                            </View>
+                        ) : (
+                            <View style={styles.mapContainer}>
+                                <Placeholder
+                                    placeholderText={LOCATION_NOT_SELECTED}
+                                    helperText={LOCATION_SUBTEXT}
+                                    placeholderImage={Assets.locationOff}
+                                />
+                            </View>
+                        )}
                     </View>
-                ) : (
-                    <Placeholder
-                        placeholderText={LOCATION_NOT_SELECTED}
-                        helperText={LOCATION_SUBTEXT}
-                        placeholderImage={Assets.locationOff}
-                    />
-                )}
-            </View>
 
-            <View style={styles.card}>
-                <Text style={styles.sectionTitle}>{RECENT_SEARCHES}</Text>
-                <SearchHistory history={history} onSelect={handleHistorySelect} clearHistory={handleClearHistory} />
-            </View>
-        </ScrollView>
+                    <View style={[styles.card, styles.historyCard]}>
+                        <Text style={styles.sectionTitle}>{RECENT_SEARCHES}</Text>
+                        <SearchHistory history={history} onSelect={handleHistorySelect} clearHistory={handleClearHistory} />
+                    </View>
+                </View>
+            </KeyboardAvoidingView>
+        </SafeAreaView>
     );
 };
 
@@ -66,7 +76,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#f2efef',
+    },
+    keyboardContainer: {
+        flex: 1,
+    },
+    innerContent: {
+        flex: 1,
         paddingHorizontal: 16,
+        paddingBottom: 10,
     },
     headerTitle: {
         fontSize: 28,
@@ -93,8 +110,13 @@ const styles = StyleSheet.create({
         color: '#333',
     },
     mapContainer: {
-        height: 300,
+        height: 200,
         borderRadius: 12,
         overflow: 'hidden',
+    },
+    historyCard: {
+        flex: 1,
+        minHeight: 150,
+        maxHeight: 400,
     },
 });
