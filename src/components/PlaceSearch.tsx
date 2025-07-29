@@ -23,6 +23,7 @@ export const PlaceSearch = React.memo(({
             name: place?.details?.displayName?.text || '',
             latitude: place?.details?.location?.latitude || 0,
             longitude: place?.details?.location?.longitude || 0,
+            address: place?.details?.formattedAddress || '',
           };
           onPlaceSelected(mappedPlace);
         }}

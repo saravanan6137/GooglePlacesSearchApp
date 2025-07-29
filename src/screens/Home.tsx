@@ -10,7 +10,7 @@ import Assets from '@assets/index';
 import { PlaceItem } from '@/types';
 
 export const Home = () => {
-    const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+    const [location, setLocation] = useState<PlaceItem | null>(null);
     const [history, setHistory] = useState<PlaceItem[]>([]);
 
     useEffect(() => {
@@ -19,12 +19,12 @@ export const Home = () => {
 
     const onPlaceSelected = useCallback((place: PlaceItem) => {
         saveHistory(place);
-        setLocation({ latitude: place.latitude, longitude: place.longitude });
+        setLocation(place);
         setHistory(getHistory());
     }, []);
 
     const handleHistorySelect = useCallback((place: PlaceItem) => {
-        setLocation({ latitude: place.latitude, longitude: place.longitude });
+        setLocation(place);
     }, []);
 
     const handleClearHistory = useCallback(() => {
