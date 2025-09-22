@@ -4,13 +4,16 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
-import { Home } from '@screens/Home';
+import { NavigationContainer } from '@react-navigation/native';
+import { Routes } from './src/navigation/Routes';
 
 function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Home />
+      <NavigationContainer>
+        <Routes />
+      </NavigationContainer>
     </SafeAreaView>
   );
 }
