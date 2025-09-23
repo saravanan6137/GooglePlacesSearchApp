@@ -14,6 +14,7 @@ module.exports = {
           '@constants': './src/constants',
           '@assets': './src/assets',
           '@types': './src/types',
+          '@redux': './src/redux',
         },
       },
     ],

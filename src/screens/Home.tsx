@@ -4,34 +4,38 @@ import { PlaceInMap } from '@components/PlaceInMap';
 import { Placeholder } from '@components/Placeholder';
 import { SearchHistory } from '@components/SearchHistory';
 import { useState, useEffect, useCallback } from 'react';
-import { getHistory, saveHistory, clearHistory } from '@utils/utilityHistory';
+import { getHistory, saveHistory, clearHistoryFromStorage } from '@utils/utilityHistory';
 import { LOCATION_NOT_SELECTED, LOCATION_SUBTEXT, EXPLORE_THE_WORLD, SEARCH_LOCATION, RECENT_SEARCHES } from '@constants/strings';
 import Assets from '@assets/index';
 import { PlaceItem } from '@/types';
+import { useSelector, useDispatch } from 'react-redux';
+import { addToHistory, clearHistory, updateHistory } from '@redux/historySlice';
+import { RootState } from '@redux/store';
 
 export const Home = () => {
+    const dispatch = useDispatch();
     const [location, setLocation] = useState<PlaceItem | null>(null);
-    const [history, setHistory] = useState<PlaceItem[]>([]);
+    const searchHistory = useSelector((state: RootState) => state.history);
 
     useEffect(() => {
-        setHistory(getHistory());
-    }, []);
+        dispatch(updateHistory(getHistory()));
+    }, [dispatch]);
 
     const onPlaceSelected = useCallback((place: PlaceItem) => {
         saveHistory(place);
         setLocation(place);
-        setHistory(getHistory());
-    }, []);
+        dispatch(addToHistory(place));
+    }, [dispatch]);
 
     const handleHistorySelect = useCallback((place: PlaceItem) => {
         setLocation(place);
     }, []);
 
     const handleClearHistory = useCallback(() => {
-        clearHistory();
-        setHistory([]);
+        clearHistoryFromStorage();
+        dispatch(clearHistory());
         setLocation(null);
-    }, []);
+    }, [dispatch]);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -63,7 +67,7 @@ export const Home = () => {
 
                     <View style={[styles.card, styles.historyCard]}>
                         <Text style={styles.sectionTitle}>{RECENT_SEARCHES}</Text>
-                        <SearchHistory history={history} onSelect={handleHistorySelect} clearHistory={handleClearHistory} />
+                        <SearchHistory history={searchHistory} onSelect={handleHistorySelect} clearHistory={handleClearHistory} />
                     </View>
                 </View>
             </KeyboardAvoidingView>

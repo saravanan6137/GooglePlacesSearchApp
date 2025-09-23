@@ -15,6 +15,6 @@ export const getHistory = (): PlaceItem[] => {
   return value ? JSON.parse(value) : [];
 };
 
-export const clearHistory = () => {
+export const clearHistoryFromStorage = () => {
   removeItem(SEARCH_HISTORY_KEY);
 };
